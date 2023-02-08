@@ -8,7 +8,9 @@ import upload from "./middleware/fileUpload.js";
 import path from "path";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
+import authRoute from "./routes/authRoute.js";
 import userRoute from "./routes/userRoute.js";
+import postRoute from "./routes/postRoute.js";
 
 const PORT = process.env.PORT || 8080;
 
@@ -55,7 +57,9 @@ app.use(upload.any()); // multer
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 //ROUTES
+app.use("/auth", authRoute);
 app.use("/users", userRoute);
+app.use("/posts", postRoute);
 
 //HANDLE ERROR
 app.use(notFound);
